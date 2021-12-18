@@ -1,0 +1,1 @@
+web: gunicorn DJANGO-TODOLIST.wsgi
