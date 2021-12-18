@@ -1,1 +1,1 @@
-web: gunicorn DJANGO-TODOLIST.wsgi
+web: gunicorn todolist.wsgi
