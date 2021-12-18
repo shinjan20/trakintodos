@@ -1,0 +1,268 @@
+.page__body{
+    width: 80%;
+    margin: 10px auto;
+}
+.todo__form__body{
+    display:flex;
+    margin:10px auto
+}
+.home__page__body{
+    display:flex;
+    margin:15px auto;
+}
+.details__page__body{
+    display: flex;
+}
+.delete__page__body{
+    display: flex;
+}
+.auth__form{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center
+}
+.FORM{
+    width: 66%;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(128,128,128,0.5);
+    flex:1;
+}
+.FORM form{
+    display: flex;
+    flex-direction: column;
+}
+
+.FORM label{
+    font-weight: bold;
+}
+
+.FORM input{
+    margin : 10px 0;
+    border:none;
+    padding : 8px 5px;
+    background-color: rgb(211, 241, 241);
+}
+
+.FORM textarea{
+    margin : 10px 0;
+    padding : 8px 5px;
+    border:none;
+    background-color: rgb(211, 241, 241);
+}
+.todo__details{
+    flex:1
+}
+
+.LOGO{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex:1;
+}
+.LOGO img{
+    width:100%;
+}
+
+.auth__body{
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a:hover{
+    color: green;
+    font-weight: bold;
+}
+
+#searchinput{
+    outline : none;
+    border : none;
+    background-color:#f8f7fa;
+    padding : 5px;
+    width:90%;
+}
+#searchinput::placeholder{
+    color: #a9a8b3;
+    font-weight: bold;
+}
+.searchbar{
+    padding : 10px;
+    background-color:#f8f7fa;
+    width: 50%;
+    margin: 10px auto;
+}
+.searchbar:hover{
+    border: 1px solid black;
+    box-shadow: 0 0 15px rgba(128,128,128,0.5);
+}
+
+.add_todo_link{
+    padding: 5px 0
+}
+.add_todo_link:hover{
+    font-size: large;
+}
+.todo__list{
+    flex : 1;
+}
+
+.todo__body__list{
+    list-style:none;
+    margin:25px 0
+}
+
+.todo__body{
+    padding:15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border : 1px solid black;
+    border-radius : 5px;
+    margin: 10px 0;
+}
+
+.todo__body:hover{
+    font-size: large;
+    padding: 20px;
+    box-shadow:0 0 6px rgba(128,128,128,0.9);
+}
+
+.todo__inactive{
+    text-decoration: line-through;
+    opacity:0.3
+}
+
+.todo__active{
+    font-weight: bold
+}
+
+.details__link{
+    flex : 0.1;
+    cursor:pointer;
+    opacity: 0.3;
+}
+
+.details__link:hover{
+    opacity: 1;
+}
+
+.update__link{
+    border : 1px solid blueviolet;
+    border-radius: 2px;
+    color: blueviolet;
+    padding: 5px;
+    width:33%;
+    margin: auto;
+}
+
+.update__link:hover{
+    background-color : blueviolet;
+    color : white;
+}
+
+.delete__link{
+    border : 1px solid red;
+    border-radius: 2px;
+    color: red;
+    padding: 5px;
+    width:33%;
+    margin: auto;
+}
+
+.delete__link:hover{
+    background-color : red;
+    color : white;
+}
+
+.paginator__link,.auth__link{
+    border : 1px solid green;
+    border-radius: 2px;
+    color: green;
+    padding: 5px 10px;
+}
+.paginator__link:hover{
+    background-color: green;
+    color: white;
+}
+
+.current__link{
+    border : 1px solid green;
+    border-radius: 2px;
+    background-color: green;
+    padding: 5px 10px;
+    color: white;
+}
+
+hr:hover{
+    color:green
+}
+
+.auth__flash{
+    color : red;
+    text-align: center;
+}
+
+.auth__link{
+    background-color: white;
+    cursor: pointer;
+    width:33%;
+    margin: auto;
+}
+.auth__link:hover{
+    background-color: green;
+    font-weight: bold;
+    color: white;
+}
+
+.errorlist{
+    color : red;
+    font-weight: bold;
+}
+.pagination{
+    text-align: center;
+}
+
+@media (max-width :700px){
+    .page__body{
+        width: 90%;
+        margin: 20px auto;
+    }
+    .home__page__body{
+        flex-direction: column;
+    }
+    .todo__form__body{
+        width:100%;
+        flex-direction: column;
+    }
+    .details__page__body{
+        flex-direction: column;
+    }
+    .delete__page__body{
+        flex-direction: column;
+    }
+    .auth__body{
+        flex-direction: column;
+    }
+    .auth__form{
+        width: 100%;
+    }
+    .FORM{
+        width: 85%;
+    }
+    .searchbar{
+        width: 90%;
+    }
+}
+@media (min-width :701px) and (max-width:1000px){
+    .page__body{
+        width: 90%;
+        margin: 10px auto;
+    }
+    .searchbar{
+        width: 75%;
+    }
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page__body">
+<a href="{{request.META.HTTP_REFERER}}">&laquo; back</a>
+<div class="todo__form__body">
+<div class="LOGO">
+    <h1>Create</h1>
+    <img src="{% static 'images/create.png' %}"/>
+</div>
+<div  class="FORM">
+<form action="" method="POST" class="Form">
+    {% csrf_token %}
+    <label for="title">Title :</label>
+     {{form.title}}
+    <label for="description">Description :</label>
+     {{form.description}}
+    <div style='margin:8px 0'>
+     <label for="is_completed">Completed? :</label>
+     {{form.is_completed}}
+    </div>
+    <button class="update__link">Create</button> 
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

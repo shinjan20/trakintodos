@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static "base/style.css" %}" />
+{% endblock %}
+
+{% block content %} 
+<div class="page__body">
+<a href="{{request.META.HTTP_REFERER}}">&laquo; back</a>
+{% if messages %}
+      {% for message in messages %}
+        <h3 class="auth__flash">{{message}}</h3>
+      {% endfor %}
+{%endif%}
+<div class="auth__body">
+<div class="LOGO">
+  <h2>{{process}}</h2>
+  <img src="{% static 'images/auth.png' %}"/>
+</div>
+{% if process == 'Login' %}
+<div class="auth__form">
+<div class="FORM">
+<form method="POST" action="">
+   {% csrf_token %}
+   <label for="username">Username :</label>
+   <input type="email" placeholder="Email address" id="username" name="username"/>
+   <label for="password">Password :</label>
+   <input type="password" placeholder="password" id="password" name="password"/>
+   <button class="auth__link">Login</button>
+</form>
+</div>
+<p>Not registered?<a href="{% url 'register' %}">Register</a></p>
+</div>
+</div>
+{% else %}
+<div class="auth__form">
+<div class="FORM">
+<form method="POST" action="" class="Form">
+   {% csrf_token %}
+   <label for="username">Username :</label>
+   {{form.username}}
+   <label for="password">Password :</label>
+   {{form.password1}}
+   <label for="confirm password">Confirm Password :</label>
+   {{form.password2}}
+   <button class="auth__link">Register</button>
+</form>
+</div>
+  <p>Already registered?<a href="{% url 'login' %}">Login</a></p>
+</div>
+</div>
+{% endif %}
+</div>
+
+{% endblock %}

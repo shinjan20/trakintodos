@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="page__body">
+<a href="{{request.META.HTTP_REFERER}}">&laquo; back</a>
+<div class="delete__page__body">
+<div class="LOGO">
+     <img src="{% static 'images/delete.png' %}"/>
+ </div>
+<div class="FORM">
+<form method="POST" action="">
+     {% csrf_token %} 
+     <h3>Are you sure you want to delete "{{obj}}" ?</h3>
+     <button class="delete__link">Delete</button> 
+</form> 
+</div>
+</div>
+</div>
+{% endblock %}

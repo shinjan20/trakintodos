@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page__body">
+{% if request.user.is_authenticated %} 
+<span>Welcome <strong>{{request.user}}</strong>, you have <strong>{{pending}} task(s)</strong> left to do.</span>
+<div class="searchbar">
+  <form method='GET' action="">
+      <input id="searchinput" type="text" name="q" placeholder="Search todo"/>
+  </form> 
+</div>
+{% endif %}  
+<div class="home__page__body">
+<div class="LOGO">
+    <img src="{% static 'images/list.png' %}"/>
+</div>
+<div class="todo__list">
+<div class="add_todo_link">
+   <a href="{% url 'create' %}">Create new todo <i class="fas fa-plus-circle"></i></a>
+</div>
+<hr/>
+<h3>Here is your daily todos : </h3>
+{% if todos %}
+  <div class="todo__body__list">
+      {%for todo in todos %}
+          <div class="todo__body">
+            {% if todo.is_completed %}
+            <a href="{% url 'details' todo.id %}"><li class="todo__inactive">{{todo.title}}</li></a>
+            {% else %}
+            <a href="{% url 'details' todo.id %}"><li class="todo__active">{{todo.title}}</li></a>
+            {% endif %}
+            <div class="todo__body__links">
+              <a href="{% url 'update' todo.id %}" class="update__link"><i class="fas fa-pencil-alt"></i></a>
+              <a href="{% url 'delete' todo.id %}" class="delete__link"><i class="far fa-trash-alt"></i></a>
+            </div>
+          </div>
+      {% endfor %}
+  </div>
+{% endif %}
+<div class="pagination">
+{% if todos.has_previous %}
+      <a href="/?page={{todos.previous_page_number}}" class="paginator__link">&laquo; Prev</a>
+{% endif %}
+{% for num in todos.paginator.page_range %}
+    {% if num == todos.number %}
+         <a href="?page={{num}}" class="current__link">{{num}}</a>
+    {% elif num > todos.number|add:'-3' and num < todos.number|add:'3' %}
+         <a href="?page={{num}}">{{num}}</a>
+    {% endif %}
+{% endfor %}
+{% if todos.has_next %}
+      <a href="/?page={{todos.next_page_number}}" class="paginator__link">Next &raquo;</a>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
