@@ -18,28 +18,31 @@
   <h2>{{process}}</h2>
   <img src="{% static 'images/auth.png' %}"/>
 </div>
-{% if process == 'Login' %}
+{% if process != 'register' %}
 <div class="auth__form">
 <div class="FORM">
 <form method="POST" action="">
    {% csrf_token %}
-   <label for="username">Username :</label>
-   <input type="email" placeholder="Email address" id="username" name="username"/>
+   <label for="email address">Email address :</label>
+   <input type="email" placeholder="email address" id="email address" name="email"/>
    <label for="password">Password :</label>
    <input type="password" placeholder="password" id="password" name="password"/>
    <button class="auth__link">Login</button>
 </form>
 </div>
+<p>Forgot password?<a href="{% url 'password_reset' %}">Reset here</a></p>
 <p>Not registered?<a href="{% url 'register' %}">Register</a></p>
 </div>
 </div>
 {% else %}
 <div class="auth__form">
 <div class="FORM">
-<form method="POST" action="" class="Form">
+<form method="POST" action="">
    {% csrf_token %}
    <label for="username">Username :</label>
    {{form.username}}
+   <label for="email address">Email address :</label>
+   {{form.email}}
    <label for="password">Password :</label>
    {{form.password1}}
    <label for="confirm password">Confirm Password :</label>

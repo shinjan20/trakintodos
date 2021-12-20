@@ -1,7 +1,28 @@
-from django.contrib.auth.models import User
+from django import forms
 from django.forms import ModelForm
-from django.contrib.auth.forms import UserCreationForm
-from .models import Todo
+from django.contrib.auth.forms import UserCreationForm,PasswordResetForm,SetPasswordForm
+from .models import Todo,User
+
+
+class resetpasswordform(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({
+         'id':'id_email',
+         'placeholder':'email address'
+        })
+
+class setpasswordform(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['new_password1'].widget.attrs.update({
+         'id':'id_new_password1',
+         'placeholder':'Password',
+        })
+        self.fields['new_password2'].widget.attrs.update({
+         'id':'id_new_password2',
+         'placeholder':'Confirm password',
+        })
 
 class todoform(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -24,11 +45,18 @@ class todoform(ModelForm):
         exclude = ['user']
 
 class registrationform(UserCreationForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({
             'name':'username',
             'id':'username',
+            'placeholder':'username',
+            'type' : 'text'
+        })
+        self.fields['email'].widget.attrs.update({
+            'name':'email',
+            'id':'email address',
             'placeholder':'email address',
             'type' : 'email'
         })
@@ -46,4 +74,4 @@ class registrationform(UserCreationForm):
         })
     class Meta:
         model = User
-        fields = ['username','password1','password2']
+        fields = ['username','email','password1','password2']

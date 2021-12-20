@@ -37,6 +37,7 @@
       {% endfor %}
   </div>
 {% endif %}
+{% if todos %}
 <div class="pagination">
 {% if todos.has_previous %}
       <a href="/?page={{todos.previous_page_number}}" class="paginator__link">&laquo; Prev</a>
@@ -52,6 +53,7 @@
       <a href="/?page={{todos.next_page_number}}" class="paginator__link">Next &raquo;</a>
 {% endif %}
 </div>
+{% endif %}
 </div>
 </div>
 </div>

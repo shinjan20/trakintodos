@@ -1,15 +1,18 @@
-from django.core import paginator
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import Q
-from django.contrib.auth.models import AnonymousUser, User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import Todo
+from .models import Todo,User
 from .forms import todoform,registrationform
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
 # Create your views here.
 
 def index(request):
@@ -25,7 +28,7 @@ def index(request):
             page_num = str(page_num)
         selected_todos = paginator.get_page(page_num)
         pending = Todo.objects.filter(is_completed=False).count()
-        context={'user':f'{request.user.username}'[0:1],'todos':selected_todos,'pending':pending}
+        context={'todos':selected_todos,'pending':pending}
     return render(request,'base/home.html',context)
 
 def registerpage(request):
@@ -35,11 +38,11 @@ def registerpage(request):
     form = registrationform()
     if request.method == 'POST' : 
             form = registrationform(request.POST)
-            print(request.POST)
             if form.is_valid():
                 new_user=form.save(commit=False)
                 new_user.save()
                 login(request,new_user)
+                send_mail('Registration complete',f'Welcome {new_user.username} to our website.Thank you for choosing our services.',env('SENDING_EMAIL'),[new_user.email])
                 return HttpResponseRedirect('/')
             else : 
                 messages.error(request,'Please fill up the form properly !!!') 
@@ -53,15 +56,15 @@ def loginpage(request):
         return HttpResponseRedirect('/')
     process = 'Login'
     if request.method == 'POST':
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
         except :
                 messages.error(request,'User does not exist !!!')
                 return HttpResponseRedirect('/login')
 
-        user = authenticate(username=username,password=password)
+        user = authenticate(request,email=email,password=password)
 
         if user is not None:
             login(request,user)

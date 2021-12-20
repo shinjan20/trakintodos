@@ -30,9 +30,32 @@
     box-shadow: 0 0 20px rgba(128,128,128,0.5);
     flex:1;
 }
+.RESET_FORM{
+    width: 40%;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(128,128,128,0.5);
+    flex:1;
+}
+
 .FORM form{
     display: flex;
     flex-direction: column;
+}
+.RESET_FORM form{
+    display: flex;
+    flex-direction: column;
+}
+.RESET_FORM label{
+    font-weight: bold;
+}
+
+.RESET_FORM input{
+    margin : 10px 0;
+    border:none;
+    padding : 8px 5px;
+    background-color: rgb(211, 241, 241);
 }
 
 .FORM label{
@@ -222,14 +245,21 @@ hr:hover{
     color : red;
     font-weight: bold;
 }
+.errorlist li{
+    list-style: none;
+}
 .pagination{
     text-align: center;
 }
+.helptext{
+    display: none;
+}
 
-@media (max-width :700px){
+@media (max-width :750px){
     .page__body{
         width: 90%;
         margin: 20px auto;
+        font-size: small;
     }
     .home__page__body{
         flex-direction: column;
@@ -250,19 +280,33 @@ hr:hover{
     .auth__form{
         width: 100%;
     }
+    .RESET_FORM{
+        width: 90%;
+        padding: 15px;
+    }
     .FORM{
         width: 85%;
+        padding: 15px 20px;
     }
     .searchbar{
         width: 90%;
     }
+    .auth__link{
+        width : 50%;
+    }
 }
-@media (min-width :701px) and (max-width:1000px){
+@media (min-width :751px) and (max-width:1050px){
     .page__body{
         width: 90%;
         margin: 10px auto;
     }
     .searchbar{
         width: 75%;
+    }
+    .RESET_FORM{
+        width: 60%;
+    }
+    .auth__link{
+        width : 40%;
     }
 }

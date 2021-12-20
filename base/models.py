@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import CASCADE
-from datetime import datetime
 
 # Create your models here.
 
@@ -10,6 +9,14 @@ completion_choices=[
     (False,'No')
 ]
 
+class User(AbstractUser):
+    email=models.EmailField(unique=True,null=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.username
+        
 class Todo(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()

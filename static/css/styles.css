@@ -54,6 +54,7 @@ button{
 
 @media (min-width :701px) and (max-width:1000px){
     .nav{
+        width:90%;
         font-size: medium;
     }
     .nav__header{
