@@ -35,7 +35,7 @@ class todoform(ModelForm):
         self.fields['description'].widget.attrs.update({
             'name':'description',
             'id':'description',
-            'placeholder':'Explain your task here.'
+            'placeholder':'Explain your task here(Optional).'
         })
         self.fields['is_completed'].widget.attrs.update({
             'id':'is_completed',
