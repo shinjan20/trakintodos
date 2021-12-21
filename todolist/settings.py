@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trakintodos.herokuapp.com']
+ALLOWED_HOSTS = ['trakintodos.herokuapp.com','127.0.0.1']
 
 
 # Application definition
