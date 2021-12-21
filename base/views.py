@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import Todo,User
-from .forms import todoform,registrationform
+from .forms import todoform,registrationform,loginform
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 import environ
@@ -54,26 +54,29 @@ def registerpage(request):
 def loginpage(request):
     if request.user.is_authenticated : 
         return HttpResponseRedirect('/')
+    form = loginform()
     process = 'Login'
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        try:
-            user = User.objects.get(email=email)
-        except :
+        form = loginform(request.POST)
+        if form.is_valid():
+            try:
+               user = User.objects.get(email=request.POST['username'])
+            except:
                 messages.error(request,'User does not exist !!!')
                 return HttpResponseRedirect('/login')
 
-        user = authenticate(request,email=email,password=password)
+        user = authenticate(request,email=request.POST['username'],password=request.POST['password'])
 
         if user is not None:
             login(request,user)
             return HttpResponseRedirect('/')
         else :
             messages.error(request,'User or password do not exist !!!')
+            return HttpResponseRedirect('/login')
        
     return render(request,'base/login-register.html',{
-        'process' : process
+        'process' : process,
+        'form':form
     })
 
 def logoutpage(request):
