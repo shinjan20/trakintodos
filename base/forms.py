@@ -1,26 +1,9 @@
 from django import forms
 from django.forms import ModelForm
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm,PasswordResetForm,SetPasswordForm
+from django.contrib.auth.forms import UserCreationForm,PasswordResetForm,SetPasswordForm
 from .models import Todo,User
 
-class loginform(AuthenticationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({
-            'name':'username',
-            'id':'email address',
-            'placeholder':'email address',
-            'type' : 'email'
-        })
-        self.fields['password'].widget.attrs.update({
-            'id':'password',
-            'placeholder':'password',
-            'minLength': 8,
-            'type' : 'password'
-        })
-    class Meta:
-        model = User
-        fields = ['username','password']
+
 class resetpasswordform(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -24,9 +24,9 @@
 <form method="POST" action="">
    {% csrf_token %}
    <label for="email address">Email address :</label>
-   {{form.username}}
+   <input type="email" placeholder="email address" id="email address" name="email" required/>
    <label for="password">Password :</label>
-   {{form.password}}
+   <input type="password" placeholder="password" id="password" name="password" required/>
    <button class="auth__link">Login</button>
 </form>
 </div>
