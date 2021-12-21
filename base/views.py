@@ -63,7 +63,7 @@ def loginpage(request):
                user = User.objects.get(email=request.POST['username'])
             except:
                 messages.error(request,'User does not exist !!!')
-                return HttpResponseRedirect('/login')
+                return HttpResponseRedirect('/accounts/login')
 
         user = authenticate(request,email=request.POST['username'],password=request.POST['password'])
 
@@ -72,7 +72,7 @@ def loginpage(request):
             return HttpResponseRedirect('/')
         else :
             messages.error(request,'User or password do not exist !!!')
-            return HttpResponseRedirect('/login')
+            return HttpResponseRedirect('/accounts/login')
        
     return render(request,'base/login-register.html',{
         'process' : process,
