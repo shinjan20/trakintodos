@@ -82,7 +82,7 @@ def logoutpage(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-@login_required(login_url='accounts/login')
+@login_required(login_url='/accounts/login/')
 def createtodo(request):
     form=todoform()
     if request.method == 'POST':
@@ -96,7 +96,7 @@ def createtodo(request):
         'form':form,
     })
 
-@login_required(login_url='accounts/login')
+@login_required(login_url='/accounts/login/')
 def updatetodo(request,pk):
     todo = Todo.objects.get(id=pk)
     form = todoform(instance=todo)
@@ -109,7 +109,7 @@ def updatetodo(request,pk):
         'form' : form,
     })
 
-@login_required(login_url='accounts/login')
+@login_required(login_url='/accounts/login/')
 def deletetodo(request,pk):
     todo = Todo.objects.get(id=pk)
     if(request.user !=  todo.user):
@@ -122,7 +122,7 @@ def deletetodo(request,pk):
     })
     
 
-@login_required(login_url='accounts/login')
+@login_required(login_url='/accounts/login/')
 def detailstodo(request,pk):
     todo = Todo.objects.get(id=pk)
     return render(request,'base/details-todo.html',{
