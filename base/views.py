@@ -27,7 +27,7 @@ def index(request):
         else :
             page_num = str(page_num)
         selected_todos = paginator.get_page(page_num)
-        pending = Todo.objects.filter(is_completed=False).count()
+        pending = Todo.objects.filter(Q(user=request.user) & Q(is_completed=False)).count()
         context={'todos':selected_todos,'pending':pending}
     return render(request,'base/home.html',context)
 
